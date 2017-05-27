@@ -1,1 +1,1 @@
-web: python tweet-alert.py
+app: python tweet-alert.py
