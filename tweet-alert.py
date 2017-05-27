@@ -2,11 +2,8 @@
 from gnippy import PowerTrackClient #HTTP stream managed by Gnippy, a fine manager for low-volume streams.
 import time
 import datetime
-import subprocess #calls Tweeting app.
 import os
 import json
-#import yaml
-import twitter
 from twitter import Twitter, OAuth
 
 # Define a callback
