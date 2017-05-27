@@ -60,6 +60,8 @@ print(my_url)
 client = PowerTrackClient(callback, url=my_url, auth=(user_name, password))
 client.connect()
 
+print("Starting to stream...")
+
 while True:
   x = 1  
   
