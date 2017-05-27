@@ -1,1 +1,1 @@
-web: python tweet-alert.py
+tweetstream: python tweet-alert.py
