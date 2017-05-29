@@ -32,14 +32,14 @@ def callback(activity):
     CONSUMER_KEY = os.environ['CONSUMER_KEY']
     CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
     ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
-    ACCESS_SECRET = os.environ['ACCESS_TOKEN_SECRET']
+    ACCESS_SECRET = os.environ['ACCESS_SECRET']
 
     t = Twitter(auth=OAuth(ACCESS_TOKEN, ACCESS_SECRET, CONSUMER_KEY, CONSUMER_SECRET))
 
     # Send a direct message
     t.direct_messages.new(user=user_id, text=message)
     
-    print('Sent Direct Message')
+    print('Sent Direct Message' + message)
  
 #------------------------------------------------   
 # Create the client
@@ -53,7 +53,7 @@ user_name = os.environ['GNIP_USER_NAME']
 password = os.environ['GNIP_PASSWORD']
 account_name = os.environ['GNIP_ACCOUNT_NAME']
 label = os.environ['GNIP_LABEL']
-    
+
 my_url = 'https://gnip-stream.twitter.com/stream/powertrack/accounts/' + account_name + '/publishers/twitter/' + label + '.json'
 print(my_url)
 
