@@ -9,14 +9,15 @@ from twitter import Twitter, OAuth
 # Define a callback
 def callback(activity):
 
-    print(activity) #to standard out.    
+    print('Received Tweet, preparing Direct Message...') #to standard out.
+    print(activity)
 
     #Parse the things we need: who posted it, when it was posted, what rules/subscribers matched it?  And a link to the Tweet. 
     tweet_hash = json.loads(activity)
     created_time_str = tweet_hash['created_at']
 
     author = tweet_hash['user']['screen_name']
-    user_id = tweet_hash['user']['id_str']
+    #user_id = tweet_hash['user']['id_str']
     
     #https://twitter.com/FloodSocial/status/868250610742722561
     tweet_link = "https://twitter.com/" + author + "/status/" + tweet_hash['id_str']
@@ -36,10 +37,17 @@ def callback(activity):
 
     t = Twitter(auth=OAuth(ACCESS_TOKEN, ACCESS_SECRET, CONSUMER_KEY, CONSUMER_SECRET))
 
-    # Send a direct message
-    t.direct_messages.new(user=user_id, text=message)
+    recipients = tweet_hash['matching_rules']
+    print(recipients)
     
-    print('Sent Direct Message' + message)
+    for recipient in recipients:
+        user_tag = recipient['tag']
+        recipient_id = user_tag.split('|')[0]
+
+        # Send a direct message
+        t.direct_messages.new(user=recipient_id, text=message)
+    
+        print('Sent Direct Message to ' + str(recipient_id) + ': ' + message)
  
 #------------------------------------------------   
 # Create the client
